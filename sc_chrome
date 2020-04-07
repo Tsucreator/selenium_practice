@@ -1,0 +1,31 @@
+from selenium import webdriver
+
+USERNAME = 'YOUR_USERNAME'
+PASSWORD = 'YOUR_PASSWORD'
+
+URL = 'https://hive-member.net/'
+driver = webdriver.Chrome()
+driver.get(URL)
+
+# ↓要素が見つけられない際に5秒待機
+driver.implicitly_wait(10)
+
+# XPathでログイン画面へのaタグをクリックする
+login_page = driver.find_element_by_xpath('/html/body/div[1]/header/div[2]/nav/ul[2]/li[1]/a')
+login_page.click()
+
+driver.implicitly_wait(10)
+# ユーザーネームフィールドへユーザーネームを入力
+username_field = driver.find_element_by_xpath('//*[@id="username-14"]')
+username_field.send_keys('USERNAME')
+
+# パスワードフィールドへパスワードを入力
+password_field = driver.find_element_by_xpath('//*[@id="user_password-14"]')
+password_field.send_keys('PASSWORD')
+
+# ログインする をクリックする
+login_button = driver.find_element_by_xpath('/html/body/div[1]/div/main/section/div[1]/div/form/div[2]/div[3]/input')
+
+login_button.click()
+
+
