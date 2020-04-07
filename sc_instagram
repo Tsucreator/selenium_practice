@@ -1,0 +1,28 @@
+from selenium import webdriver
+
+"ブラウザを開く"
+driver = webdriver.Chrome()
+
+# webページを開く  
+driver.get('https://www.instagram.com/accounts/emailsignup/')
+
+# ログインするという画面をクリックする
+login_page = driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/article/div/div[2]')
+login_page.click()
+
+
+# html内, body内のフォーム要素
+login_field = driver.find_element_by_xpath('/html/body/div[1]/section/main/div/article/div/div[1]/div/form/div[2]/div/label/input')
+login_field.send_keys('USERNAME')
+
+# パスワードフィールドへパスワードを入力
+password_field = driver.find_element_by_xpath('/html/body/div[1]/section/main/div/article/div/div[1]/div/form/div[3]/div/label/input')
+password_field.send_keys('PASSWORD')
+
+# ログインする をクリックする
+login_button = driver.find_element_by_xpath('/html/body/div[1]/section/main/div/article/div/div[1]/div/form/div[4]')
+
+login_button.click()
+
+
+driver.implicitly_wait(20) #読み込みを待つために10秒間処理を止める
